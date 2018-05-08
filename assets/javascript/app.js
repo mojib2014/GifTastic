@@ -1,9 +1,9 @@
 
-
+// array of topics.
 var topics = ["Agriculture", "Cartoons", "Dog", "Cat", "Soccer", "Nancy Ajram", "Movies"];
-
+// display topic info function.
     function displayTopicInfo() {
-
+// ajax call.
     var topic = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=txu6J32l4s3TYPMjD2ge2ALsgegMrgxf&limit=10";
     
@@ -25,17 +25,31 @@ var topics = ["Agriculture", "Cartoons", "Dog", "Cat", "Soccer", "Nancy Ajram", 
            topicDiv.append(pOne);
 
            var topicImage = $("<img>").attr("src", results[i].images.fixed_height_still.url);
-           topicImage.attr("yup");
+           topicImage.attr('data-animate', results[i].images.fixed_height.url)
+           topicImage.attr('data-still', results[i].images.fixed_height_still.url)
+           topicImage.attr('data-state', "still");
+           topicImage.addClass("yup");
            topicDiv.append(topicImage);
            console.log(topicImage);
            $("#topic-view").prepend(topicDiv);
         }
+        // listning to user's click function.
+        $(document).on("click", '.yup', function() {
+            var state = $(this).attr("data-state");
+            if (state === "still") {
+              $(this).attr("src", $(this).attr("data-animate"));
+              $(this).attr("data-state", "animate");
+            } else {
+              $(this).attr("src", $(this).attr("data-still"));
+              $(this).attr("data-state", "still");
+            }
+          });
            
        
     
     });      
     }
-
+        // render button function.
         function renderButton() {
              $("#buttons-view").empty();
              for (var i = 0; i < topics.length; i++) {
@@ -47,6 +61,7 @@ var topics = ["Agriculture", "Cartoons", "Dog", "Cat", "Soccer", "Nancy Ajram", 
              }
          }
         
+        //  add topic function.
         $("#add-topic").on("click", function(event) {
             event.preventDefault();
             var topic = $("#topic-input").val().trim();
@@ -56,22 +71,13 @@ var topics = ["Agriculture", "Cartoons", "Dog", "Cat", "Soccer", "Nancy Ajram", 
         });
         $(document).on("click", ".topic-btn", displayTopicInfo);
 
-      
-      $(".yup").on("click", function() {
-        var state = $(this).attr("data-state");
-        if (state === "still") {
-          $(this).attr("src", $(this).attr("data-animate"));
-          $(this).attr("data-state", "animate");
-        } else {
-          $(this).attr("src", $(this).attr("data-still"));
-          $(this).attr("data-state", "still");
-        }
-      });
       renderButton();
 
       var beepThree = $("#beep-three")[0];
       $("#nav-three a")
-          .mouseenter(function() {
+          .mouseover(function() {
               beepThree.pause();
               beepThree.play();
           });
+
+          
