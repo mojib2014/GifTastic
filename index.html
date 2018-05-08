@@ -7,11 +7,16 @@
     <title>GifTastic</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
     <link rel = "stylesheet" type = "text/css" href = "assets/css/style.css">
+    <link src = "assets/audio/beep.m3" controls>
 </head>
 <body>
     <div class="container">
         <h1>Movie Search</h1>
         <div id = "buttons-view"></div>
+        <audio id="beep-three" preload="auto">
+                <source src="audio/beep.mp3" controls></source>
+                <source src="audio/beep.ogg" controls></source>
+            </audio>
         <form id = "topic-form">
           <lable for = "topic-input"> Search a topic</lable>
           <input type="text" id="topic-input"><br><br>
@@ -20,6 +25,7 @@
         </form>
         <div id = "topic-view"></div>
     </div>
+        
         
             <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"

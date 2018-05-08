@@ -68,3 +68,10 @@ var topics = ["Agriculture", "Cartoons", "Dog", "Cat", "Soccer", "Nancy Ajram", 
         }
       });
       renderButton();
+
+      var beepThree = $("#beep-three")[0];
+      $("#nav-three a")
+          .mouseenter(function() {
+              beepThree.pause();
+              beepThree.play();
+          });
