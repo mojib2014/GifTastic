@@ -6,14 +6,16 @@ body {
     background-repeat: repeat;
     margin: 0 auto;
 }
-form {
-    float: right;
-    margin-left: 4px;
+#form {
+    margin-left: 3px;
     color: white;
-    /* margin-top: 50px; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.mainBtn {
+    margin-left: 110px;
 }
 h1 {
-    text-align: right;
     color: white;
     margin-top: 20px;
 }

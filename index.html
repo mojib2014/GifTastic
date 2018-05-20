@@ -5,32 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>GifTastic</title>
+    <!-- bootstrap link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" />
+    <!-- my css link -->
     <link rel = "stylesheet" type = "text/css" href = "assets/css/style.css">
+    <!-- audio link -->
     <link src = "assets/audio/beep.m3" controls>
 </head>
 <body>
+    <!-- Container which contains all elements -->
     <div class="container">
         <h1>Topic Search</h1>
-        <div id = "buttons-view"></div>
-        <audio id="beep-three"   preload="auto">
-                <source src="audio/beep.mp3" controls></source>
-                <source src="audio/beep.ogg" controls></source>
-            </audio>
-        <form id = "topic-form">
-          <lable for = "topic-input"> Search a topic</lable>
-          <input type="text" id="topic-input"><br><br>
 
-          <input id = "add-topic"   type="submit" value = "add a topic">
-        </form>
+        <!-- form div -->
+        <div id="form">
+            <form id = "topic-form">
+              <lable for = "topic-input"> Search a topic</lable>
+              <textarea type="text" id="topic-input" rows="2" cols="100"></textarea><br><br>
+
+              <!-- main button -->
+              <div class="mainBtn">
+                <input id = "add-topic" autofocus  type="submit" value = "add a topic">
+              </div>
+            </form>
+          </div>
+
+        <!-- all the topic buttons will be dinamically droped here -->
+        <div id = "buttons-view"></div>
+
+        <!-- On hover audio for the buttons -->
+        <audio id="beep-three"   preload="auto">
+            <source src="audio/beep.mp3" controls></source>
+            <source src="audio/beep.ogg" controls></source>
+        </audio>
+
+        <!-- topic view -->
         <div id = "topic-view"></div>
     </div>
         
-        
+        <!-- jquery link -->
             <script
             src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>  
+
+            <!-- my own javascript link -->
             <script type = "text/javascript" src = "assets/javascript/app.js"></script>
 
 </body>

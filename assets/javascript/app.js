@@ -1,8 +1,10 @@
 
 // array of topics.
-var topics = ["Agriculture", "Cartoons", "Dog", "Cat", "Soccer", "Nancy Ajram", "Movies"];
-// display topic info function.
-    function displayTopicInfo() {
+var topics = ["Mozda Jamalzadah", "Ahmad Zahir", "Agriculture", "Cartoons", "Dog", "Cat", "Soccer", "Nancy Ajram", "Movies"];
+
+// display topicInfo function.
+function displayTopicInfo() {
+
 // ajax call.
     var topic = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + topic + "&api_key=txu6J32l4s3TYPMjD2ge2ALsgegMrgxf&limit=10";
@@ -13,27 +15,33 @@ var topics = ["Agriculture", "Cartoons", "Dog", "Cat", "Soccer", "Nancy Ajram", 
     }).then(function(response){
 
         var results = response.data;
-        // looping in response array.
+        // looping through response array.
         for (var i = 0; i < results.length; i++) {
 
            var topicDiv = $("<div class = 'topic'>");
-           console.log(results);
+        //    console.log(results);
 
+           // getting the rating
            var rating = results[i].rating;
-           console.log(rating);
+        //    console.log(rating);
+
+           // creating a p tag and appending it to the topicDiv    
            var pOne = $("<p>").text("Rating: " + rating);
            topicDiv.append(pOne);
 
-           var topicImage = $("<img>").attr("src", results[i].images.fixed_height_still.url);
+           // grabing the images and appending them to the dom.   
+           var topicImage = $("<img>").attr("src", results[i].images.fixed_height_still.url, 'display', 'block');
            topicImage.attr('data-animate', results[i].images.fixed_height.url)
            topicImage.attr('data-still', results[i].images.fixed_height_still.url)
            topicImage.attr('data-state', "still");
            topicImage.addClass("yup");
-           topicDiv.append(topicImage);
-           console.log(topicImage);
+           topicDiv.prepend(topicImage);
+           topicDiv.css('float', 'left');
+           topicDiv.css('margin', '5px');
+        //    console.log(topicImage);
            $("#topic-view").prepend(topicDiv);
         }
-        // listning to user's click function.
+        // listning to user's click function and changing images state.
         $(document).on("click", '.yup', function() {
             var state = $(this).attr("data-state");
             if (state === "still") {
@@ -48,7 +56,7 @@ var topics = ["Agriculture", "Cartoons", "Dog", "Cat", "Soccer", "Nancy Ajram", 
        
     
     });      
-    }
+}
         // render button function.
         function renderButton() {
              $("#buttons-view").empty();
@@ -57,7 +65,7 @@ var topics = ["Agriculture", "Cartoons", "Dog", "Cat", "Soccer", "Nancy Ajram", 
                  newButton.addClass("topic-btn");
                  newButton.attr("data-name", topics[i]);
                  newButton.text(topics[i]);
-                 $("#buttons-view").append(newButton);
+                 $("#buttons-view").prepend(newButton);
              }
          }
         
@@ -73,6 +81,7 @@ var topics = ["Agriculture", "Cartoons", "Dog", "Cat", "Soccer", "Nancy Ajram", 
 
       renderButton();
 
+      // audio function   
       var beepThree = $("#beep-three")[0];
       $("#nav-three a")
           .mouseover(function() {
